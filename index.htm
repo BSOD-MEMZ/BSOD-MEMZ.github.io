@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LegacyDownload</title>
+    <bgsound src="bg.mp3" loop="-1">
+        <style type="text/css">
+            body {
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                margin: 0;
+                padding: 0;
+                background-color: #1a1a1a;
+                color: #c0c0c0;
+                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYmBgYPgPxAwwzAjjAAAAAP//AwAVNADXRWE/4wAAAABJRU5ErkJggg==');
+            }
+
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                background-color: #2a2a2a;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+                border: 1px solid #3a3a3a;
+            }
+
+            .header {
+                background-color: #1a1a1a;
+                color: #c0c0c0;
+                padding: 20px;
+                text-align: center;
+                border-bottom: 1px solid #3a3a3a;
+                background-image: url('data:image/png;base64,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');
+            }
+
+            .header h1 {
+                font-size: 48px;
+                margin: 0;
+                font-weight: normal;
+                text-shadow: 2px 2px 4px #000;
+                color: #e0e0e0;
+            }
+
+            .nav {
+                background-color: #2d1b2d;
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid #4a3a4a;
+            }
+
+            .nav a {
+                color: #b8a2b8;
+                text-decoration: none;
+                padding: 5px 15px;
+                font-size: 18px;
+                letter-spacing: 1px;
+                transition: color 0.3s;
+            }
+
+            .nav a:hover {
+                color: #e0c0e0;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+
+            .section h2 {
+                color: #b8a2b8;
+                border-bottom: 1px solid #4a3a4a;
+                padding-bottom: 10px;
+                text-shadow: 1px 1px 2px #000;
+                font-size: 28px;
+            }
+
+            .poetry {
+                background-color: #2d1b2d;
+                padding: 20px;
+                border-left: 4px solid #4a3a4a;
+                margin-bottom: 20px;
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .poetry h3 {
+                margin-top: 0;
+                color: #d1b3d1;
+                font-size: 24px;
+            }
+
+            .artwork {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .artwork td {
+                width: 33.33%;
+                padding: 10px;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            .artwork img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                border: 1px solid #4a3a4a;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s;
+            }
+
+            .artwork img:hover {
+                transform: scale(1.05);
+            }
+
+            .footer {
+                background-color: #1a1a1a;
+                color: #8a8a8a;
+                text-align: center;
+                padding: 10px;
+                font-size: 14px;
+                border-top: 1px solid #3a3a3a;
+            }
+
+            .quote {
+                font-style: italic;
+                color: #b8a2b8;
+                text-align: center;
+                margin: 20px 0;
+                font-size: 20px;
+            }
+
+            .gallery {
+                display: table;
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .gallery-row {
+                display: table-row;
+            }
+
+            .gallery-item {
+                display: table-cell;
+                width: 25%;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .gallery-item img {
+                height: 150px;
+                border: 1px solid #4a3a4a;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+
+            ul.gothic-list {
+                list-style-type: none;
+                padding-left: 20px;
+            }
+
+            ul.gothic-list li:before {
+                content: "※";
+                padding-right: 8px;
+                color: #b8a2b8
+            }
+
+            .leaf {
+                position: absolute;
+                /* 绝对定位 */
+                top: 0;
+                /* 距离顶部 0 */
+                left: 0;
+                /* 距离左侧 0 */
+                z-index: 1000;
+                /* 设置较高层级，确保图片在其他内容之上 */
+                width: 150px;
+                /* 设置图片宽度 */
+                height: auto;
+                /* 保持宽高比 */
+            }
+
+            .image-button {
+                display: inline-block;
+                width: 48px;
+                height: 48px;
+                background-image: url("b.gif");
+                background-size: cover;
+                background-position: center;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                text-decoration: none;
+            }
+
+            .image-button:hover {
+                background-image: url("bh.gif");
+            }
+
+            .image-button:active {
+                background-image: url("ba.gif");
+            }
+
+            .icon-text {
+                display: flex;
+                align-items: center;
+            }
+
+            .icon-text img {
+                margin-right: 10px;
+                width: 24px;
+                height: 24px;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="leaf.gif" alt="固定图片" class="leaf">
+        <div class="header">
+            <h1>LegacyDownload</h1>
+        </div>
+        <div class="nav">
+            <a href="#xp">WinXP专区</a>
+            <a href="#9x">Win9x专区</a>
+            <a href="#android">老安卓专区</a>
+            <a href="#about">关于</a>
+        </div>
+        <div class="content">
+            <div class="quote">您的老电脑并没有性能下降，而是新版软件对硬件性能要求太高了！</div>
+
+            <div id="xp" class="section">
+                <h2>WindowsXP</h2>
+                <p><i>适用于WindowsXP SP3的程序</i></p>
+                <div class="gallery">
+                    <h3>浏览器</h3>
+                    <div class="gallery-row">
+                        <div class="gallery-item">
+                            <img src="assets/theworld7.png" alt="">
+                            <p><b>世界之窗浏览器</b></p>
+                            <p>使用Chrome48内核，支持大部分网页</p>
+                            <a href="programs/TWInst_7.0.0.108.exe" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/firefox.png" alt="">
+                            <p><b>Firefox ESR</b></p>
+                            <p>最后支持WindowsXP的Firefox</p>
+                            <a href="programs/Firefox-ESR-full-latest.exe" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/superchromium.png" alt="">
+                            <p><b>Supermium</b></p>
+                            <p>使用Chromium132内核，但是占用非常大</p>
+                            <a href="programs/supermium_132_32_setup.exe" class="image-button"></a>
+                        </div>
+                    </div>
+                    <h3>影音播放</h3>
+                    <div class="gallery-row">
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>K-Lite Codec Pack 1385 Standard</b></p>
+                            <p>最后支持WindowsXP的版本，安装后可以直接用WMP9播放MP4等新型格式的文件</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>超级解霸</b></p>
+                            <p>适合用于播放DVD</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>千千静听</b></p>
+                            <p>经典的音乐播放器</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                    </div>
+                    <h3>实用工具</h3>
+                    <div class="gallery-row">
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>7-Zip</b></p>
+                            <p>功能强大的解压缩软件，支持到Windows2000</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>手心输入法</b></p>
+                            <p>可以在WindowsXP和Longhorn4074上正常运行的中文输入法</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>StylePix</b></p>
+                            <p>轻量级图片处理工具</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                    </div>
+                    <h3>办公开发</h3>
+                    <div class="gallery-row">
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>Dev-C++ 5.11</b></p>
+                            <p>开箱即用的C++ IDE，内置编译器</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>WPS 2019</b></p>
+                            <p>可以在WindowsXP正常运行的办公软件，消耗资源较多</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="wcnm1.gif" alt="">
+                            <p><b>Libre Office</b></p>
+                            <p>开源的办公软件，同时支持Longhorn4074</p>
+                            <a href="wcnm.7z" class="image-button"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="artwork" class="section">
+               
+            </div>
+
+            <div id="gallery" class="section">
+                
+            </div>
+
+            <div id="about" class="section">
+                <h2>关于</h2>
+                <p>在这里下载适合老旧设备的软件</p>
+                <div class="icon-text">
+                    <img src="ie.gif" alt="IE">
+                    <span>本网站已完美适配Internet Explorer 5.5</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 LegacyDownload</p>
+           
+        </div>
+    </div>
+</body>
+
+</html>
